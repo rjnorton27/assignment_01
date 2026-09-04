@@ -1,4 +1,28 @@
-Write your reflection here.
+This assignment taught me how a module like bill.py separates the core logic from the 
+interfaces that use it. The console, notebook, and Streamlit dashboard all called the same 
+four functions (tip_amount, grand_total, split_evenly, and is_generous)
+instead of each reimplementing the math on its own. Along the way, I ran into 
+an IndentationError because my function bodies weren't indented under their def lines,
+which meant Python couldn't even parse the file before any tests could run. That made it 
+clear that in Python, structure comes from whitespace rather than braces or semicolons.
 
-See reflection.md for what makes a good reflection — be specific, use the
-terminology from class, and make it actionable.
+The most useful part of the assignment was the debugging practice. I intentionally broke
+grand_total so it returned only the tip instead of tip plus subtotal, and the unit test 
+failed with an assertion like 10.0 == 60.0. Rather than guessing where the bug was, I set a 
+breakpoint on the return line and checked the VARIABLES panel, which showed the exact 
+value being returned. I repeated the process with console.py, tracing a logic error in how 
+the per-person split was calculated. Working through both cases showed me the real difference
+between a unit test, which checks one function directly, and an integration test, which
+checks a whole interface end to end. 
+
+Where I actually struggled was trusting the debugger over my own guess. My first instinct was
+still to reread the code line by line and guess where the bug was, and I only reached for a
+breakpoint after guessing wrong. So the thing I don't fully have yet isn't the mechanics of the
+debugger itself, it's the habit of using it first. I also noticed I'm not confident about how
+round() handles values exactly at .5, like whether it always rounds up or sometimes rounds to
+the nearest even number, so my mental model of rounding money is incomplete rather than wrong.
+
+Next time a test fails, my plan is to set a breakpoint on the return line immediately, before
+rereading any code, so I build the habit instead of falling back on guessing. For the rounding
+question, I want to test round() directly in the Python console with a few .5 values and read the
+documentation on its rounding behavior, since that's a specific, checkable gap rather than a vague one.
